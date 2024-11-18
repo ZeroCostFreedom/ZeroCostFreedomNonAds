@@ -3,70 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merlin 3. Bölüm | Türkçe Dublaj | Nimueh'in İşareti</title>
+    <title>Merlin 2. Bölüm | Türkçe Dublaj | Valiant</title>
     <style>
         body {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             flex-direction: column;
             height: 100vh;
             margin: 0;
-            background-color: #121212;
-            color: white;
+            background-color: #000; /* Night mode */
+            color: #fff; /* White text */
             font-family: Arial, sans-serif;
-        }
-        h1 {
-            font-size: 2rem;
-            font-weight: bold;
-            margin: 20px 0;
             text-align: center;
         }
-        video, iframe {
-            max-width: 100%;
-            height: auto;
-            border: 2px solid #333;
+        .title {
+            font-size: 3rem; /* Large title font */
+            font-weight: bold;
+            margin-top: 20px; /* Added margin-top so the title does not overlap */
+            color: #f0f0f0; /* Light color for title */
+            text-transform: uppercase;
+            margin-bottom: 20px; /* Added space below title */
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px; /* Maximum video width */
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #000;
             border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         .description {
             max-width: 90%;
             margin-top: 20px;
-            padding: 15px;
-            background-color: #1e1e1e;
-            border: 1px solid #333;
+            padding: 10px;
+            background-color: #222; /* Dark grey */
+            border: 1px solid #555;
             border-radius: 8px;
             font-size: 1rem;
+            color: #fff;
             text-align: center;
         }
-        .description h2 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem; /* Adjust title font size for mobile */
+            }
+            .description {
+                font-size: 0.9rem; /* Smaller text for mobile */
+            }
         }
-        /* Disable right-click */
-        video, iframe {
-            pointer-events: none;
-        }
-        body {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+        @media (max-width: 480px) {
+            .title {
+                font-size: 1.5rem; /* Smaller title for very small screens */
+            }
+            .description {
+                font-size: 0.8rem;
+            }
         }
     </style>
+    <script>
+        // Disable right-click on the entire page
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    </script>
 </head>
 <body>
-    <!-- Title of the video -->
-    <h1>Merlin 3. Bölüm | Türkçe Dublaj | Nimueh'in İşareti</h1>
+    <!-- Video title at the top center above the player -->
+    <div class="title">Merlin 3. Bölüm | Türkçe Dublaj | Nimueh'in İşareti</div>
 
-    <!-- Video Player (embed from Google Drive) -->
-    <iframe src="https://drive.google.com/file/d/1d9aHYZ3gznqxgYMKQpiYzMEdtuYz7WCp/preview" width="960" height="540" allow="autoplay" allowfullscreen></iframe>
-
-    <!-- Description of the video -->
-    <div class="description">
-        <p>
-            "Merlin 3. Bölüm | Türkçe Dublaj | Nimueh'in İşareti" bölümünde, Merlin ve arkadaşları, kötü niyetli bir büyücü olan Nimueh'in, Camelot krallığını tehdit eden karanlık planlarını durdurmak için mücadele ederler. 
-            Merlin, eski dostlarıyla birlikte, aralarındaki sadakati ve cesareti test edecek zorluklarla karşılaşırken, aynı zamanda büyü gücünü de daha iyi kullanmayı öğrenir.
-        </p>
+    <!-- Custom Video Player using Google Drive link -->
+    <div class="video-container">
+        <iframe src="https://drive.google.com/file/d/1d9aHYZ3gznqxgYMKQpiYzMEdtuYz7WCp/preview" 
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
+
 </body>
 </html>

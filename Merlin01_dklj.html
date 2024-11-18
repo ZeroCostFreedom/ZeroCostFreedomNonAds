@@ -8,7 +8,7 @@
         body {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             flex-direction: column;
             height: 100vh;
             margin: 0;
@@ -16,6 +16,14 @@
             color: #fff; /* White text */
             font-family: Arial, sans-serif;
             text-align: center;
+        }
+        .title {
+            font-size: 3rem; /* Large title font */
+            font-weight: bold;
+            margin-top: 20px; /* Added margin-top so the title does not overlap */
+            color: #f0f0f0; /* Light color for title */
+            text-transform: uppercase;
+            margin-bottom: 20px; /* Added space below title */
         }
         .video-container {
             position: relative;
@@ -35,11 +43,6 @@
             height: 100%;
             border: none;
         }
-        .title {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
         .description {
             max-width: 90%;
             margin-top: 20px;
@@ -48,21 +51,23 @@
             border: 1px solid #555;
             border-radius: 8px;
             font-size: 1rem;
+            color: #fff;
+            text-align: center;
         }
         @media (max-width: 768px) {
-            .description {
-                font-size: 0.9rem; /* Smaller text for mobile devices */
-            }
             .title {
-                font-size: 1.5rem; /* Adjust title font size for mobile devices */
+                font-size: 2rem; /* Adjust title font size for mobile */
+            }
+            .description {
+                font-size: 0.9rem; /* Smaller text for mobile */
             }
         }
         @media (max-width: 480px) {
+            .title {
+                font-size: 1.5rem; /* Smaller title for very small screens */
+            }
             .description {
                 font-size: 0.8rem;
-            }
-            .title {
-                font-size: 1.2rem; /* Smaller title for very small screens */
             }
         }
     </style>
@@ -72,8 +77,8 @@
     </script>
 </head>
 <body>
-    <!-- Video title above the player -->
-    <div class="title">Merlin 1. Bölüm: Ejderhanın Çağrısı</div>
+    <!-- Video title at the top center above the player -->
+    <div class="title">Merlin 1. Bölüm | Türkçe Dublaj | Ejderhanın Çağrısı</div>
 
     <!-- Custom Video Player using Google Drive link -->
     <div class="video-container">
@@ -81,8 +86,8 @@
                 frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
+    <!-- Description section -->
     <div class="description">
-        <h2>Hakkında</h2>
         <p>
             "Merlin" dizisinin bu bölümünde, Camelot Krallığı bir kez daha büyük bir tehlikeyle karşı karşıya. 
             Genç büyücü Merlin, Kral Arthur'un geleceğini korumak için kadim bir çağrıya yanıt vermek zorunda kalır. 

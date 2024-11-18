@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merlin 1. Bölüm | Türkçe Dublaj | Ejderhanın İntikamı</title>
+    <title>Merlin 1. Bölüm | Türkçe Dublaj | Ejderhanın Çağrısı</title>
     <style>
         body {
             display: flex;
@@ -12,41 +12,61 @@
             flex-direction: column;
             height: 100vh;
             margin: 0;
-            background-color: #000; /* Night mode: black background */
-            color: #fff; /* White text for better contrast */
+            background-color: #000; /* Night mode */
+            color: #fff; /* White text */
             font-family: Arial, sans-serif;
+            text-align: center;
         }
-        iframe {
-            max-width: 90%;
+        video {
+            width: 90%;
+            max-width: 640px;
             height: auto;
-            border: 2px solid #fff; /* White border for contrast */
+            aspect-ratio: 16 / 9;
+            border: 2px solid #fff; /* White border for better contrast */
             border-radius: 8px;
+            background-color: #000; /* Ensure black background behind controls */
         }
         .description {
             max-width: 90%;
             margin-top: 20px;
             padding: 10px;
-            background-color: #222; /* Dark grey for description box */
-            border: 1px solid #555; /* Subtle border for the description box */
+            background-color: #222; /* Dark grey */
+            border: 1px solid #555;
             border-radius: 8px;
             font-size: 1rem;
-            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .description {
+                font-size: 0.9rem; /* Smaller text for mobile devices */
+            }
+        }
+        @media (max-width: 480px) {
+            video {
+                width: 100%; /* Full width for smaller screens */
+            }
+            .description {
+                font-size: 0.8rem;
+            }
         }
     </style>
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault()); // Disable right click
+    </script>
 </head>
 <body>
-    <!-- Embed the video from Google Drive -->
-    <iframe src="https://drive.google.com/file/d/1hGcMy61ERESxK4_2lZNfBDQH1J6QqOFY/preview" 
-            width="640" height="360" allow="autoplay"></iframe>
+    <!-- Custom Video Player using Google Drive link -->
+    <video controls>
+        <source src="https://drive.google.com/uc?id=1hGcMy61ERESxK4_2lZNfBDQH1J6QqOFY&export=download" type="video/mp4">
+        Tarayıcınız video etiketini desteklemiyor.
+    </video>
 
     <div class="description">
-        <h2>Merlin 1. Bölüm: Ejderhanın İntikamı</h2>
+        <h2>Merlin 1. Bölüm: Ejderhanın Çağrısı</h2>
         <p>
-            "Merlin" dizisinin bu bölümünde, Camelot Krallığı büyük bir tehdit altındadır. Uzun süredir 
-            zincire vurulmuş olan efsanevi ejderha, intikamını almak için uyanır. Genç büyücü Merlin, 
-            sadece kaderini değil, aynı zamanda tüm krallığın geleceğini değiştirecek bir görevle karşı karşıyadır. 
-            Bu heyecan verici başlangıç bölümü, izleyiciyi büyülü dünyaların ve tehlikeli düşmanların olduğu bir yolculuğa çıkarıyor. 
-            Türkçe dublaj ile bu unutulmaz serüveni izleyebilirsiniz.
+            "Merlin" dizisinin bu bölümünde, Camelot Krallığı bir kez daha büyük bir tehlikeyle karşı karşıya. 
+            Genç büyücü Merlin, Kral Arthur'un geleceğini korumak için kadim bir çağrıya yanıt vermek zorunda kalır. 
+            Ejderhanın yeniden uyanışı, krallığı büyülü bir yolculuğa çıkarır. Merlin'in bu zorlu macerasında, 
+            dostluk, cesaret ve kaderin güçlerini keşfedin. Türkçe dublaj ile keyifle izleyin!
         </p>
     </div>
 </body>

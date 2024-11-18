@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merlin 1. Bölüm | Türkçe Dublaj | Ejderhanın İntikamı</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #000; /* Night mode: black background */
+            color: #fff; /* White text for better contrast */
+            font-family: Arial, sans-serif;
+        }
+        iframe {
+            max-width: 90%;
+            height: auto;
+            border: 2px solid #fff; /* White border for contrast */
+            border-radius: 8px;
+        }
+        .description {
+            max-width: 90%;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #222; /* Dark grey for description box */
+            border: 1px solid #555; /* Subtle border for the description box */
+            border-radius: 8px;
+            font-size: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Embed the video from Google Drive -->
+    <iframe src="https://drive.google.com/file/d/1hGcMy61ERESxK4_2lZNfBDQH1J6QqOFY/preview" 
+            width="640" height="360" allow="autoplay"></iframe>
+
+    <div class="description">
+        <h2>Merlin 1. Bölüm: Ejderhanın İntikamı</h2>
+        <p>
+            "Merlin" dizisinin bu bölümünde, Camelot Krallığı büyük bir tehdit altındadır. Uzun süredir 
+            zincire vurulmuş olan efsanevi ejderha, intikamını almak için uyanır. Genç büyücü Merlin, 
+            sadece kaderini değil, aynı zamanda tüm krallığın geleceğini değiştirecek bir görevle karşı karşıyadır. 
+            Bu heyecan verici başlangıç bölümü, izleyiciyi büyülü dünyaların ve tehlikeli düşmanların olduğu bir yolculuğa çıkarıyor. 
+            Türkçe dublaj ile bu unutulmaz serüveni izleyebilirsiniz.
+        </p>
+    </div>
+</body>
+</html>

@@ -17,14 +17,13 @@
             font-family: Arial, sans-serif;
             text-align: center;
         }
-        video {
+        .video-container {
             width: 90%;
-            max-width: 640px;
+            max-width: 800px;
             height: auto;
             aspect-ratio: 16 / 9;
             border: 2px solid #fff; /* White border for better contrast */
             border-radius: 8px;
-            background-color: #000; /* Ensure black background behind controls */
         }
         .description {
             max-width: 90%;
@@ -41,7 +40,7 @@
             }
         }
         @media (max-width: 480px) {
-            video {
+            .video-container {
                 width: 100%; /* Full width for smaller screens */
             }
             .description {
@@ -50,15 +49,16 @@
         }
     </style>
     <script>
-        document.addEventListener('contextmenu', event => event.preventDefault()); // Disable right click
+        // Disable right-click on the entire page
+        document.addEventListener('contextmenu', event => event.preventDefault());
     </script>
 </head>
 <body>
     <!-- Custom Video Player using Google Drive link -->
-    <video controls>
-        <source src="https://drive.google.com/uc?id=1hGcMy61ERESxK4_2lZNfBDQH1J6QqOFY&export=download" type="video/mp4">
-        Tarayıcınız video etiketini desteklemiyor.
-    </video>
+    <div class="video-container">
+        <iframe src="https://drive.google.com/file/d/1hGcMy61ERESxK4_2lZNfBDQH1J6QqOFY/preview" 
+                width="100%" height="auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
 
     <div class="description">
         <h2>Merlin 1. Bölüm: Ejderhanın Çağrısı</h2>

@@ -12,7 +12,7 @@
             flex-direction: column;
             height: 100vh;
             margin: 0;
-            background-color: #121212; /* Dark mode */
+            background-color: #121212; /* Dark Mode */
             color: #f0f0f0; /* Light text color for contrast */
             font-family: 'Arial', sans-serif;
             text-align: center;
@@ -45,10 +45,6 @@
             height: 100%;
             border: none;
         }
-        .youtube-container {
-            margin-top: 40px;
-            max-width: 100%;
-        }
         .description {
             max-width: 90%;
             margin-top: 30px;
@@ -73,6 +69,10 @@
             font-style: italic;
             line-height: 1.6;
             text-align: justify;
+        }
+        .youtube-container {
+            margin-top: 40px;
+            max-width: 100%;
         }
         @media (max-width: 768px) {
             .title {
@@ -106,12 +106,6 @@
                 frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
-    <!-- YouTube Playlist embed with small size, autoplay, no sound, and repeat -->
-    <div class="youtube-container">
-        <iframe width="10" height="10" src="https://www.youtube.com/embed/videoseries?list=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR&autoplay=1&mute=1&loop=1&playlist=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR" 
-                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
-
     <!-- Description section -->
     <div class="description">
         <p>
@@ -120,6 +114,12 @@
             Ejderhanın yeniden uyanışı, krallığı büyülü bir yolculuğa çıkarır. Merlin'in bu zorlu macerasında, 
             dostluk, cesaret ve kaderin güçlerini keşfedin. Türkçe dublaj ile keyifle izleyin!
         </p>
+    </div>
+
+    <!-- YouTube Playlist embed with small size, autoplay, no sound, and repeat -->
+    <div class="youtube-container">
+        <iframe width="10" height="10" src="https://www.youtube.com/embed/videoseries?list=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR&autoplay=1&mute=1&loop=1&playlist=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR" 
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 </body>
 </html>

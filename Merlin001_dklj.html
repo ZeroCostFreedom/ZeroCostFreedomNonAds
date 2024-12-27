@@ -1,120 +1,100 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merlin 1. Bölüm | Türkçe Dublaj | Ejderhanın Çağrısı</title>
-    <style>
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            height: 100vh;
-            margin: 0;
-            background-color: #121212; /* Dark Mode */
-            color: #f0f0f0; /* Light text color for contrast */
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        .title {
-            font-size: 3.5rem; /* Larger title */
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #ff6347; /* Light red color */
-            letter-spacing: 3px;
-            margin-bottom: 30px;
-        }
-        .video-container {
-            position: relative;
-            width: 100%;
-            max-width: 1000px;
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            background-color: #000;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8); /* Subtle shadow */
-            margin-bottom: 40px;
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        .description {
-            max-width: 90%;
-            margin-top: 30px;
-            padding: 20px;
-            background-color: #1a1a1a; /* Dark grey background */
-            border: 1px solid #555;
-            border-radius: 12px;
-            font-size: 1.2rem;
-            color: #fff;
-            text-align: left;
-            line-height: 1.8;
-            font-family: 'Georgia', serif; /* Elegant serif font */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-            transition: all 0.3s ease-in-out;
-        }
-        .description:hover {
-            background-color: #333;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
-        }
-        .description p {
-            font-size: 1.1rem;
-            font-style: italic;
-            line-height: 1.6;
-            text-align: justify;
-        }
-        .youtube-container {
-            margin-top: 40px;
-            max-width: 100%;
-        }
-        @media (max-width: 768px) {
-            .title {
-                font-size: 2.5rem; /* Adjust title font size for mobile */
-            }
-            .description {
-                font-size: 1rem; /* Smaller text for mobile */
-            }
-        }
-        @media (max-width: 480px) {
-            .title {
-                font-size: 1.8rem; /* Smaller title for very small screens */
-            }
-            .description {
-                font-size: 0.9rem;
-            }
-        }
-    </style>
-    <script>
-        // Disable right-click on the entire page
-        document.addEventListener('contextmenu', event => event.preventDefault());
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merlin 1. Bölüm | Türkçe Dublaj | Ejderhanın Çağrısı</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #000; /* Night mode */
+            color: #fff; /* White text */
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .title {
+            font-size: 3rem; /* Large title font */
+            font-weight: bold;
+            margin-top: 20px; /* Added margin-top so the title does not overlap */
+            color: #f0f0f0; /* Light color for title */
+            text-transform: uppercase;
+            margin-bottom: 20px; /* Added space below title */
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px; /* Maximum video width */
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #000;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .description {
+            max-width: 90%;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #222; /* Dark grey */
+            border: 1px solid #555;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #fff;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem; /* Adjust title font size for mobile */
+            }
+            .description {
+                font-size: 0.9rem; /* Smaller text for mobile */
+            }
+        }
+        @media (max-width: 480px) {
+            .title {
+                font-size: 1.5rem; /* Smaller title for very small screens */
+            }
+            .description {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+    <script>
+        // Disable right-click on the entire page
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    </script>
 </head>
 <body>
-    <!-- Video title at the top center above the player -->
-    <div class="title">Merlin 1. Bölüm | Türkçe Dublaj | Ejderhanın Çağrısı</div>
+    <!-- Video title at the top center above the player -->
+    <div class="title">Merlin 1. Bölüm | Türkçe Dublaj | Ejderhanın Çağrısı</div>
 
-    <!-- Custom Video Player using Google Drive link -->
-    <div class="video-container">
-        <iframe src="https://drive.google.com/file/d/1hGcMy61ERESxK4_2lZNfBDQH1J6QqOFY/preview" 
-                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
+    <!-- Custom Video Player using Google Drive link -->
+    <div class="video-container">
+        <iframe src="https://drive.google.com/file/d/1hGcMy61ERESxK4_2lZNfBDQH1J6QqOFY/preview" 
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
 
-    <!-- Description section -->
-    <div class="description">
-        <p>
-            "Merlin" dizisinin bu bölümünde, Camelot Krallığı bir kez daha büyük bir tehlikeyle karşı karşıya. 
-            Genç büyücü Merlin, Kral Arthur'un geleceğini korumak için kadim bir çağrıya yanıt vermek zorunda kalır. 
-            Ejderhanın yeniden uyanışı, krallığı büyülü bir yolculuğa çıkarır. Merlin'in bu zorlu macerasında, 
-            dostluk, cesaret ve kaderin güçlerini keşfedin. Türkçe dublaj ile keyifle izleyin!
-        </p>
-    </div>
+    <!-- Description section -->
+    <div class="description">
+        <p>
+            "Merlin" dizisinin bu bölümünde, Camelot Krallığı bir kez daha büyük bir tehlikeyle karşı karşıya. 
+            Genç büyücü Merlin, Kral Arthur'un geleceğini korumak için kadim bir çağrıya yanıt vermek zorunda kalır. 
+            Ejderhanın yeniden uyanışı, krallığı büyülü bir yolculuğa çıkarır. Merlin'in bu zorlu macerasında, 
+            dostluk, cesaret ve kaderin güçlerini keşfedin. Türkçe dublaj ile keyifle izleyin!
+        </p>
+    </div>
 
     <!-- YouTube Playlist embed with small size, autoplay, no sound, and repeat -->
     <div class="youtube-container">

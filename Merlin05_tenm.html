@@ -72,6 +72,33 @@
         }
     </style>
     <script>
+        // Function to request fullscreen and lock orientation
+        function enableFullscreenAndLandscape(iframe) {
+            const videoFrame = iframe.contentWindow.document.querySelector('video');
+            if (videoFrame) {
+                videoFrame.play();
+
+                // Request fullscreen
+                if (iframe.requestFullscreen) {
+                    iframe.requestFullscreen();
+                } else if (iframe.webkitRequestFullscreen) { // Safari support
+                    iframe.webkitRequestFullscreen();
+                } else if (iframe.msRequestFullscreen) { // IE/Edge support
+                    iframe.msRequestFullscreen();
+                }
+
+                // Lock screen orientation to landscape
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('landscape').catch(console.error);
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const iframe = document.querySelector('.video-container iframe');
+            iframe.addEventListener('load', () => enableFullscreenAndLandscape(iframe));
+        });
+
         // Disable right-click on the entire page
         document.addEventListener('contextmenu', event => event.preventDefault());
     </script>

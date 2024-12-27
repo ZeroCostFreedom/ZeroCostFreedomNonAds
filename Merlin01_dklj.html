@@ -95,11 +95,32 @@
             dostluk, cesaret ve kaderin güçlerini keşfedin. Türkçe dublaj ile keyifle izleyin!
         </p>
     </div>
-    <!-- YouTube Playlist embed with small size, autoplay, no sound, repeat, and random start -->
 <div class="youtube-container">
-    <iframe width="10" height="10" src="https://www.youtube.com/embed/videoseries?list=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR&autoplay=1&mute=1&loop=1&playlist=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR&random=true" 
+    <iframe id="youtube-player" width="560" height="315" 
+            src="https://www.youtube.com/embed/videoseries?list=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR&autoplay=1&mute=1&loop=1&playlist=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR" 
             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
+
+<script>
+    // Load the YouTube IFrame Player API
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('youtube-player', {
+            events: {
+                'onReady': onPlayerReady
+            }
+        });
+    }
+
+    function onPlayerReady(event) {
+        event.target.setPlaybackRate(2); // Set playback speed to 2x
+    }
+</script>
 
 </body>
 </html>

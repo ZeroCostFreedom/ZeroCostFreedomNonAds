@@ -8,32 +8,34 @@
         body {
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             flex-direction: column;
             height: 100vh;
             margin: 0;
-            background-color: #000; /* Night mode */
-            color: #fff; /* White text */
-            font-family: Arial, sans-serif;
+            background-color: #121212; /* Dark mode */
+            color: #f0f0f0; /* Light text color for contrast */
+            font-family: 'Arial', sans-serif;
             text-align: center;
+            padding: 20px;
         }
         .title {
-            font-size: 3rem; /* Large title font */
-            font-weight: bold;
-            margin-top: 20px; /* Added margin-top so the title does not overlap */
-            color: #f0f0f0; /* Light color for title */
+            font-size: 3.5rem; /* Larger title */
+            font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 20px; /* Added space below title */
+            color: #ff6347; /* Light red color */
+            letter-spacing: 3px;
+            margin-bottom: 30px;
         }
         .video-container {
             position: relative;
             width: 100%;
-            max-width: 1000px; /* Maximum video width */
+            max-width: 1000px;
             height: 0;
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             background-color: #000;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8); /* Subtle shadow */
+            margin-bottom: 40px;
         }
         .video-container iframe {
             position: absolute;
@@ -49,29 +51,43 @@
         }
         .description {
             max-width: 90%;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #222; /* Dark grey */
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #1a1a1a; /* Dark grey background */
             border: 1px solid #555;
-            border-radius: 8px;
-            font-size: 1rem;
+            border-radius: 12px;
+            font-size: 1.2rem;
             color: #fff;
-            text-align: center;
+            text-align: left;
+            line-height: 1.8;
+            font-family: 'Georgia', serif; /* Elegant serif font */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease-in-out;
+        }
+        .description:hover {
+            background-color: #333;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+        }
+        .description p {
+            font-size: 1.1rem;
+            font-style: italic;
+            line-height: 1.6;
+            text-align: justify;
         }
         @media (max-width: 768px) {
             .title {
-                font-size: 2rem; /* Adjust title font size for mobile */
+                font-size: 2.5rem; /* Adjust title font size for mobile */
             }
             .description {
-                font-size: 0.9rem; /* Smaller text for mobile */
+                font-size: 1rem; /* Smaller text for mobile */
             }
         }
         @media (max-width: 480px) {
             .title {
-                font-size: 1.5rem; /* Smaller title for very small screens */
+                font-size: 1.8rem; /* Smaller title for very small screens */
             }
             .description {
-                font-size: 0.8rem;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -90,7 +106,11 @@
                 frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
-
+    <!-- YouTube Playlist embed with small size, autoplay, no sound, and repeat -->
+    <div class="youtube-container">
+        <iframe width="10" height="10" src="https://www.youtube.com/embed/videoseries?list=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR&autoplay=1&mute=1&loop=1&playlist=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR" 
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
 
     <!-- Description section -->
     <div class="description">
@@ -100,11 +120,6 @@
             Ejderhanın yeniden uyanışı, krallığı büyülü bir yolculuğa çıkarır. Merlin'in bu zorlu macerasında, 
             dostluk, cesaret ve kaderin güçlerini keşfedin. Türkçe dublaj ile keyifle izleyin!
         </p>
-    </div>
-        <!-- YouTube Playlist embed with small size, autoplay, no sound, and repeat -->
-    <div class="youtube-container">
-        <iframe width="10" height="10" src="https://www.youtube.com/embed/videoseries?list=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR&autoplay=1&mute=1&loop=1&playlist=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR" 
-                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 </body>
 </html>

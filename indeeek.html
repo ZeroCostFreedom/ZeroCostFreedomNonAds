@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive SCORM Content</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        iframe {
+            width: 100%;
+            height: calc(100vh - 100px);
+            border: none;
+        }
+        .ar-container {
+            text-align: center;
+            padding: 20px;
+            background-color: #e0e7ff;
+        }
+        .ar-container button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .ar-container button:hover {
+            background-color: #003f7f;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Interactive Learning Portal</h1>
+    </header>
+
+    <iframe src="https://talim.uzkri.uz/mod/scorm/loadSCO.php?a=37&scoid=71&currentorg=IH102-r02_ORG&mode=&attempt=1" title="SCORM Content"></iframe>
+
+    <div class="ar-container">
+        <h2>Augmented Reality Experience</h2>
+        <p>Enhance your learning experience with AR. Click the button below to launch the AR feature.</p>
+        <button onclick="launchAR()">Launch AR</button>
+    </div>
+
+    <script>
+        function launchAR() {
+            alert('AR functionality is currently under development. Stay tuned for updates!');
+        }
+    </script>
+</body>
+</html>
